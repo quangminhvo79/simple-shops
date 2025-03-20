@@ -73,3 +73,5 @@ gem "redis", "~> 5"
 gem "action-cable-redis-backport", "~> 1"
 
 gem "redis-session-store", "~> 0.11.5"
+
+gem "devise", "~> 4.9"
