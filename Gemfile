@@ -67,3 +67,9 @@ end
 
 gem "stimulus_reflex", "~> 3.5"
 gem "pg", "~> 1.5"
+
+gem "redis", "~> 5"
+
+gem "action-cable-redis-backport", "~> 1"
+
+gem "redis-session-store", "~> 0.11.5"

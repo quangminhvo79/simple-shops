@@ -1,6 +1,8 @@
 GEM
   remote: https://rubygems.org/
   specs:
+    action-cable-redis-backport (1.0.3)
+      actioncable (>= 5.0)
     actioncable (8.0.2)
       actionpack (= 8.0.2)
       activesupport (= 8.0.2)
@@ -261,6 +263,9 @@ GEM
       redis-client (>= 0.22.0)
     redis-client (0.24.0)
       connection_pool
+    redis-session-store (0.11.6)
+      actionpack (>= 5.2.4.1, < 9)
+      redis (>= 3, < 6)
     regexp_parser (2.10.0)
     reline (0.6.0)
       io-console (~> 0.5)
@@ -393,6 +398,7 @@ PLATFORMS
   x86_64-linux
 
 DEPENDENCIES
+  action-cable-redis-backport (~> 1)
   bootsnap
   brakeman
   capybara
@@ -406,6 +412,8 @@ DEPENDENCIES
   propshaft
   puma (>= 5.0)
   rails (~> 8.0.1)
+  redis (~> 5)
+  redis-session-store (~> 0.11.5)
   rspec-rails (~> 7.0.0)
   rubocop-rails-omakase
   selenium-webdriver
