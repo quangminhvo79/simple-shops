@@ -1,24 +1,23 @@
-# README
+# SIMPLE SHOPS
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+- Manage multi shops
+- Crawl multi dynamic fields in some e-commercials (Zara, HM, MANGO, Nike, Adidas, Taobao, 1688, ...)
+- Manage users in each shops
+- Integrate with some automation workflow: n8n, zapier, make, airflow, ...
 
-Things you may want to cover:
+# Prerequisites
 
-* Ruby version
+## Software require
+- Ruby 3.2.2
+- NodeJS 23.10.0
+- Postgresql 16
 
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+## Stacks
+- Rails8
+- TailwindCSS
+- Hotwired (Stimulus and Turbo)
+- [View Component](https://github.com/mtcld/die-reguliere/blob/develop/app/components/readme.md)
+- Rspec, Capybara for Unit test and Integration test
+- Devise
+- Rubocop
+- StimulusReflex
