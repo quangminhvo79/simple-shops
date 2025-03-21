@@ -77,3 +77,5 @@ gem "redis-session-store", "~> 0.11.5"
 gem "devise", "~> 4.9"
 
 gem "tailwindcss-rails", "~> 4.2"
+
+gem "rails_icons", "~> 1.2"

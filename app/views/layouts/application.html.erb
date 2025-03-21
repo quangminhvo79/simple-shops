@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html data-theme="cupcake">
   <head>
     <title><%= content_for(:title) || "Simple Shops" %></title>
     <meta name="viewport" content="width=device-width,initial-scale=1">
@@ -22,7 +22,14 @@
   </head>
 
   <body>
-    <%= yield %>
+    <%= render "layouts/navbar" %>
+    <div class="bg-base-100 drawer mx-auto max-w-[100rem] lg:drawer-open">
+      <input id="my-drawer" type="checkbox" class="drawer-toggle" />
+      <div class="drawer-content p-5">
+        <%= yield %>
+      </div>
+      <%= render "layouts/drawer_sidebar" %>
+    </div>
     <% if notice %>
       <p class="notice"><%= notice %></p>
     <% end %>

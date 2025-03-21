@@ -1,0 +1,13 @@
+<div class="drawer-side border-r border-base-300">
+  <label for="my-drawer" aria-label="close sidebar" class="drawer-overlay"></label>
+  <ul class="menu bg-base-100 text-base-content min-h-full w-60 p-4">
+    <% sidebar_items.each do |item| %>
+      <li class="flex flex-row items-center space-x-2 menu-title cursor-pointer hover:bg-base-300 rounded-lg font-medium">
+        <span class="inline-block">
+          <%= icon item[:icon_name], class: ["fill-black"], variant: item[:icon_type] %>
+        </span>
+        <a class="text-black"><%= item[:title] %></a>
+      </li>
+    <% end %>
+  </ul>
+</div>

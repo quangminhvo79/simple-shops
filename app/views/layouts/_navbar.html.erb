@@ -1,0 +1,63 @@
+<div class="navbar bg-base-100 shadow-sm border-b border-base-300">
+  <div class="flex-1">
+    <label for="my-drawer" class="btn btn-square lg:hidden drawer-button">
+      <%= icon "menu" %>
+    </label>
+    <a class="btn btn-ghost text-xl">Your Shop</a>
+  </div>
+  <div class="flex-none space-x-4">
+    <div class="dropdown dropdown-end ">
+      <div tabindex="0" role="button" class="btn btn-ghost btn-circle border border-neutral-content rounded-full">
+        <div class="indicator">
+          <%= icon "cart" %>
+          <span class="badge badge-sm border-neutral-content bg-base-200 indicator-item -top-1 -right-1">8</span>
+        </div>
+      </div>
+      <div
+        tabindex="0"
+        class="card card-compact dropdown-content bg-base-100 z-1 mt-3 w-52 drop-shadow-2xl">
+        <div class="card-body">
+          <span class="text-lg font-bold">8 Items</span>
+          <span class="text-info">Subtotal: $999</span>
+          <div class="card-actions">
+            <button class="btn btn-primary btn-block">View cart</button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="dropdown dropdown-end">
+      <div tabindex="0" role="button" class="btn btn-ghost btn-circle avatar">
+        <div class="w-10 rounded-full">
+          <img
+            alt="Navbar component"
+            src="https://img.daisyui.com/images/stock/photo-1534528741775-53994a69daeb.webp" />
+        </div>
+      </div>
+      <ul
+        tabindex="0"
+        class="menu menu-sm dropdown-content bg-base-100 rounded-box z-1 mt-3 w-52 p-2 drop-shadow-2xl">
+        <li>
+          <a class="justify-between">
+            Profile
+            <span class="badge">New</span>
+          </a>
+        </li>
+        <li>
+          <a>
+            <%= icon "cog" %>
+            <span>Settings</span>
+          </a>
+        </li>
+        <li>
+          <%= render "layouts/switch_theme" %>
+        </li>
+        <li>
+          <a>
+            <%= icon "log-out" %>
+            <span>Logout</span>
+          </a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</div>
