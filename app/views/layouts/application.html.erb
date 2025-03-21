@@ -30,11 +30,18 @@
       </div>
       <%= render "layouts/drawer_sidebar" %>
     </div>
-    <% if notice %>
-      <p class="notice"><%= notice %></p>
-    <% end %>
-    <% if alert %>
-      <p class="alert"><%= alert %></p>
-    <% end %>
+
+    <div class="toast toast-end">
+      <% if alert %>
+        <div role="alert" class="alert alert-error alert-soft">
+          <span><%= alert %>.</span>
+        </div>
+      <% end %>
+      <% if notice %>
+        <div role="alert" class="alert alert-success alert-soft">
+          <span><%= notice %></span>
+        </div>
+      <% end %>
+    </div>
   </body>
 </html>

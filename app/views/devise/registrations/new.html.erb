@@ -28,23 +28,53 @@
       </a>
     </div>
   </div>
-  <div class="relative flex items-center justify-center h-10 mb-4 text-gray-400 text-sm">
+  <div class="relative flex items-center justify-center h-10 mb-2 text-gray-400 text-sm">
     <div class="absolute top-[50%] w-full border-t border-gray-200"></div>
-    <div class="relative z-10 text-[13px] text-grey bg-white px-2">
-        Or
+    <div class="relative z-10 text-[13px] text-grey bg-base-100 px-2">
+      Or
     </div>
   </div>
-  <form method="POST" action="/register">
+  <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
+    <%= render "devise/shared/error_messages", resource: resource %>
+
     <div class="mb-4">
-      <input id="name" type="text" name="name" class="form-input" placeholder="Name" value="" required="" autocomplete="name" autofocus="">
+      <legend class="fieldset-legend text-sm">Email</legend>
+      <label class="input input-md w-full rounded-xl">
+        <%= icon "envelope", class: ["w-4 h-4 opacity-50"]%>
+        <%= f.email_field :email, autofocus: true, placeholder: "Email address" %>
+      </label>
     </div>
 
     <div class="mb-4">
-      <input id="email" type="email" name="email" class="form-input" placeholder="Email address" value="" required="" autocomplete="email">
+      <legend class="fieldset-legend text-sm">Password</legend>
+      <label class="input validator w-full rounded-xl">
+        <%= icon "key", class: ["opacity-50 w-4 h-5"]%>
+        <%= f.password_field :password,
+          placeholder: "Password",
+          minlength: "8",
+          pattern: "(?=.*\\d)(?=.*[a-z])(?=.*[A-Z]).{8,}",
+          title: "Must be more than 8 characters, including number, lowercase letter, uppercase letter"
+        %>
+      </label>
+      <p class="validator-hint hidden">
+        Must be more than 8 characters, including
+        <br/>At least one number
+        <br/>At least one lowercase letter
+        <br/>At least one uppercase letter
+      </p>
     </div>
 
     <div class="mb-4">
-      <input id="password" type="password" name="password" class="form-input" placeholder="Password (12+ characters please)" required="" autocomplete="new-password">
+      <legend class="fieldset-legend text-sm">Confirm password</legend>
+      <label class="input validator w-full rounded-xl">
+        <%= icon "key", class: ["opacity-50 w-4 h-5"]%>
+        <%= f.password_field :password_confirmation,
+          placeholder: "Confirm password",
+          minlength: "8",
+          pattern: "(?=.*\\d)(?=.*[a-z])(?=.*[A-Z]).{8,}",
+          title: "Must be more than 8 characters, including number, lowercase letter, uppercase letter"
+        %>
+      </label>
     </div>
 
     <div class="mt-8">
@@ -52,7 +82,7 @@
         <span class="mx-auto">Create account</span>
       </button>
     </div>
-  </form>
+  <% end %>
 
   <div class="text-gray-500 text-sm text-center mt-10">
     <p class="mx-auto">

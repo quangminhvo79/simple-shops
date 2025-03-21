@@ -8,7 +8,7 @@
     <div class="text-center mt-1 mb-5">
       <h1 class="text-24 font-medium">Sign in to Your Shop</h1>
     </div>
-    <div class="lg:flex lg:items-center mb-8">
+    <div class="lg:flex lg:items-center mb-4">
       <div class="text-sm mb-4 lg:w-1/2 lg:mb-0 lg:mr-2">
         <a href="" id="google-login" class="flex items-center justify-center pl-2 pr-2.25 py-3 font-medium border border-slate-300 rounded-lg hover:border-slate-500">
           <svg class="flex-shrink-0 w-6 h-6 mr-2" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -29,40 +29,64 @@
         </a>
       </div>
     </div>
-    <div class="relative flex items-center justify-center h-10 mb-8 text-gray-400 text-sm">
+    <div class="relative flex items-center justify-center h-10 mb-2 text-gray-400 text-sm">
       <div class="absolute top-[50%] w-full border-t border-gray-200"></div>
-      <div class="relative z-10 text-[13px] text-grey bg-white px-2">
+      <div class="relative z-10 text-[13px] text-grey bg-base-100 px-2">
         Or
       </div>
     </div>
-    <form method="POST" action="">
-      <input type="hidden" name="_token" autocomplete="off">
+    <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
       <div class="mb-4">
-        <input id="username" type="username" name="username" class="form-input" placeholder="Username" value="" required="" autocomplete="false">
+        <legend class="fieldset-legend text-sm">Email</legend>
+        <label class="input input-md w-full rounded-xl">
+          <%= icon "envelope", class: ["w-4 h-4 opacity-50"]%>
+          <%= f.email_field :email, autofocus: true, placeholder: "Email address" %>
+        </label>
       </div>
 
       <div class="mb-4">
-        <input id="password" type="password" name="password" class="form-input" placeholder="Password" required="">
+        <legend class="fieldset-legend text-sm">Password</legend>
+        <label class="input w-full rounded-xl">
+          <%= icon "key", class: ["opacity-50 w-4 h-5"]%>
+          <%= f.password_field :password,
+            placeholder: "Password",
+            minlength: "8",
+            pattern: "(?=.*\\d)(?=.*[a-z])(?=.*[A-Z]).{8,}",
+            title: "Must be more than 8 characters, including number, lowercase letter, uppercase letter"
+          %>
+        </label>
+        <p class="validator-hint hidden">
+          Must be more than 8 characters, including
+          <br/>At least one number
+          <br/>At least one lowercase letter
+          <br/>At least one uppercase letter
+        </p>
       </div>
+
       <div class="mt-8">
-        <button type="submit" class="btn btn-primary btn-large px-4 py-[10px] w-full">
+        <%= f.submit "Sign in", class: "btn btn-primary btn-outline btn-lg w-full" do %>
           <span class="mx-auto">Sign in</span>
-        </button>
+        <% end %>
       </div>
-      <div class="flex items-center justify-center w-full mt-8">
-        <input type="checkbox" name="remember" id="remember" class="form-checkbox  mr-3 flex-shrink-0" value="1">
-        <label for="remember" class="text-sm">Remember me</label>
-      </div>
-    </form>
+
+      <% if devise_mapping.rememberable? %>
+        <div class="flex items-center justify-center w-full mt-8">
+          <label class="fieldset-label text-sm">
+            <%= f.check_box :remember_me, class: "checkbox checkbox-sm" %>
+            Remember me
+          </label>
+        </div>
+      <% end %>
+    <% end %>
     <div class="flex items-center justify-center mt-5 text-sm">
       <p class="mx-2">
-        <a href="/password/reset" class="text-gray-500 hover:text-indigo-700">Forgot your password?</a>
+        <%= link_to "Forgot your password?", new_user_password_path, class: "text-gray-500 hover:text-primary-content" %>
       </p>
       <p class="mx-2">
-        <a href="/register" class="text-gray-500 hover:text-indigo-700">Sign up</a>
+        <%= link_to "Sign Up", new_user_registration_path, class: "text-gray-500 hover:text-primary-content" %>
       </p>
       <p class="mx-2">
-        <a href="/my-orders" class="text-gray-500 hover:text-indigo-700">Customer Dashboard</a>
+        <a href="/" class="text-gray-500 hover:text-primary-content">Contact Customer</a>
       </p>
     </div>
   </div>
