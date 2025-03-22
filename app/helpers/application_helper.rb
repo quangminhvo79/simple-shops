@@ -14,7 +14,7 @@ module ApplicationHelper
       {
         title: "Crawl Markets",
         icon_name: "archive",
-        url: root_path
+        url: crawl_markets_path
       },
       {
         title: "Bank Account",

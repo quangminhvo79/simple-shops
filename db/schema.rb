@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2025_03_21_093249) do
+ActiveRecord::Schema[8.0].define(version: 2025_03_21_100221) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_catalog.plpgsql"
 
@@ -40,6 +40,28 @@ ActiveRecord::Schema[8.0].define(version: 2025_03_21_093249) do
     t.bigint "blob_id", null: false
     t.string "variation_digest", null: false
     t.index ["blob_id", "variation_digest"], name: "index_active_storage_variant_records_uniqueness", unique: true
+  end
+
+  create_table "crawl_markets", force: :cascade do |t|
+    t.string "name"
+    t.string "code"
+    t.text "crawler_paths"
+    t.boolean "enabled", default: true
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["code"], name: "index_crawl_markets_on_code"
+    t.index ["name"], name: "index_crawl_markets_on_name"
+  end
+
+  create_table "crawler_fields", force: :cascade do |t|
+    t.bigint "crawl_market_id", null: false
+    t.string "field_name"
+    t.string "selector"
+    t.string "element_content_attr"
+    t.string "query_type"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["crawl_market_id"], name: "index_crawler_fields_on_crawl_market_id"
   end
 
   create_table "users", force: :cascade do |t|
@@ -76,4 +98,5 @@ ActiveRecord::Schema[8.0].define(version: 2025_03_21_093249) do
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
+  add_foreign_key "crawler_fields", "crawl_markets"
 end

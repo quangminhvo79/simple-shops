@@ -1,0 +1,17 @@
+<%= turbo_stream.update :dump do %>
+  <script type="module">
+    document.querySelector('#new_crawl_market_dialog [method="dialog"] button').click();
+  </script>
+<% end %>
+
+<%= turbo_stream.replace :new_crawl_market_frame do %>
+  <%= render "crawl_markets/new_form" %>
+<% end %>
+
+<%= turbo_stream.replace :crawl_market_list do %>
+  <%= render "crawl_markets/list" %>
+<% end %>
+
+<%= turbo_stream.replace :toast do %>
+  <%= render "layouts/toast" %>
+<% end %>

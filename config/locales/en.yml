@@ -29,3 +29,19 @@
 
 en:
   hello: "Hello world"
+  crawler_markets: "Crawl Markets"
+  new_crawler_market: "New Market"
+  crawler_paths: "Crawler Paths"
+  crawler_fields: "Crawler Fields"
+  no_crawler_markets_found: "No crawl markets found"
+  crawler_field:
+    field_name: "Field Name"
+    selector: "Selector"
+    query_type: "Query Type"
+    selector_attribute: "Selector Attribute"
+    query_type_options:
+      class_relative: "Class Relative"
+      exactly_match: "Exactly Match"
+      url_search_param: "URL Search Param"
+      url_search_param_from_element: "URL Search Param From Element"
+      window_variable: "Window Variable"

@@ -1,0 +1,38 @@
+<div class="form-container">
+  <%= form_for crawl_market, url: form_url, html: { class: "text-sm" }, data: { turbo_method: :post } do |f| %>
+    <div class="space-y-2">
+      <div class="mb-4 flex items-center justify-start gap-4">
+        <legend class="fieldset-legend text-sm min-w-24">Code:</legend>
+        <label class="input input-md w-full rounded-xl">
+          <%= f.text_field :code, autofocus: true, class: "grow", placeholder: "Code" %>
+        </label>
+      </div>
+
+      <div class="mb-4 flex items-center justify-start gap-4">
+        <legend class="fieldset-legend text-sm min-w-24">Name:</legend>
+        <label class="input input-md w-full rounded-xl">
+          <%= f.text_field :name, autofocus: true, class: "grow", placeholder: "Name" %>
+        </label>
+      </div>
+
+      <div class="mb-0 flex items-center justify-start gap-4">
+        <legend class="fieldset-legend text-sm min-w-24">Crawl Paths:</legend>
+        <label class="input input-md w-full rounded-xl p-0 h-auto">
+          <%= f.text_field :crawler_paths, value: crawl_market.crawler_paths.to_json, autofocus: true, class: "grow !border-0", placeholder: "Paths", data: { controller: "tagify" } %>
+        </label>
+      </div>
+      <div class="text-xs pl-30 mb-4 font-normal mt-1">
+        value should be a host, separated by `tab`
+      </div>
+      <div class="mb-4 flex items-center justify-start gap-4">
+        <legend class="fieldset-legend text-sm min-w-24">Enabled:</legend>
+        <%= f.check_box :enabled, class: "toggle" %>
+      </div>
+    </div>
+
+    <div class="modal-action">
+      <%= turbo_frame_tag :crawl_market_errors, class: "flex flex-1" %>
+      <button class="btn btn-success text-white px-8">Save</button>
+    </div>
+  <% end %>
+</div>

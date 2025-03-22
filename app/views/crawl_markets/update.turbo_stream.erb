@@ -1,0 +1,6 @@
+<%= render "update_and_toast_message" %>
+<%= turbo_stream.update :dump do %>
+  <script type="module">
+    document.querySelector('#edit_crawl_market_dialog [method="dialog"] button').click();
+  </script>
+<% end %>

@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="mobile-web-app-capable" content="yes">
+    <meta name="turbo-refresh-method" content="morph">
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 
@@ -15,6 +16,7 @@
 
     <link rel="icon" href="<%= asset_path("favicon.ico") %>" type="image/png">
     <link rel="apple-touch-icon" href="<%= asset_path("apple-touch-icon.png") %>">
+    <link href="https://cdn.jsdelivr.net/npm/@yaireo/tagify/dist/tagify.css" rel="stylesheet" type="text/css" />
 
     <%# Includes all stylesheet files in app/assets/stylesheets %>
     <%= stylesheet_link_tag :app, "data-turbo-track": "reload" %>
@@ -31,17 +33,8 @@
       <%= render "layouts/drawer_sidebar" %>
     </div>
 
-    <div class="toast toast-end">
-      <% if alert %>
-        <div role="alert" class="alert alert-error alert-soft">
-          <span><%= alert %>.</span>
-        </div>
-      <% end %>
-      <% if notice %>
-        <div role="alert" class="alert alert-success alert-soft">
-          <span><%= notice %></span>
-        </div>
-      <% end %>
-    </div>
+    <%= render "layouts/toast" %>
+
+    <%= turbo_frame_tag :dump %>
   </body>
 </html>

@@ -21,4 +21,8 @@ Rails.application.routes.draw do
   # Defines the root path route ("/")
   # root "posts#index"
   root to: "dashboard#index"
+
+  resources :crawl_markets do
+    resources :crawler_fields
+  end
 end

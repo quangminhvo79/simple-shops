@@ -1,0 +1,58 @@
+<%= turbo_frame_tag :crawl_market_list do %>
+  <div class="overflow-x-auto rounded-box border border-base-content/5 bg-base-100" data-theme="coffee">
+    <table class="table">
+      <!-- head -->
+      <thead>
+        <tr>
+          <% CrawlMarket.display_fields.each do |column_name| %>
+            <th><%= column_name.humanize.titlecase %></th>
+          <% end %>
+          <th class="w-25">Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% if CrawlMarket.all.present? %>
+          <% CrawlMarket.all.each do |crawl_market| %>
+            <tr>
+              <th><%= crawl_market.id %></th>
+              <td><%= crawl_market.code %></td>
+              <td><%= crawl_market.name %></td>
+              <td><%= crawl_market.crawler_paths_normalize %></td>
+              <td><%= crawl_market.enabled %></td>
+              <td class="w-25">
+                <div>
+                  <%= link_to edit_crawl_market_path(crawl_market),
+                    class: "btn btn-secondary btn-sm btn-square",
+                    data: {
+                      turbo_method: :get,
+                      turbo_frame: "edit_crawl_market_frame"
+                    } do %>
+                    <%= icon "edit" %>
+                  <% end %>
+                  <%= link_to crawl_market_path(crawl_market),
+                    class: "btn btn-error btn-sm btn-square",
+                    data: {
+                      turbo_confirm: "Are you sure you want to delete the crawl market?",
+                      turbo_method: :delete
+                    } do %>
+                    <%= icon "trash" %>
+                  <% end %>
+                </div>
+              </td>
+            </tr>
+          <% end %>
+        <% else %>
+          <tr>
+            <td colspan="<%= CrawlMarket.display_fields.size + 1 %>">
+              <div class="flex items
+              -center justify-center space-x-2">
+                <%= icon "archive", class: "fill-base-content" %>
+                <span>No crawl markets found</span>
+              </div>
+            </td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+<% end %>
