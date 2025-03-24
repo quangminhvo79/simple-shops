@@ -1,5 +1,5 @@
 <%= turbo_frame_tag :crawl_market_list do %>
-  <div class="overflow-x-auto rounded-box border border-base-content/5 bg-base-100" data-theme="coffee">
+  <div class="overflow-x-auto rounded-box border border-base-content/5 bg-base-100" data-theme="caramellatte">
     <table class="table">
       <!-- head -->
       <thead>
@@ -13,21 +13,32 @@
       <tbody>
         <% if CrawlMarket.all.present? %>
           <% CrawlMarket.all.each do |crawl_market| %>
-            <tr>
+            <tr class="hover:bg-base-300 cursor-pointer">
               <th><%= crawl_market.id %></th>
               <td><%= crawl_market.code %></td>
               <td><%= crawl_market.name %></td>
               <td><%= crawl_market.crawler_paths_normalize %></td>
-              <td><%= crawl_market.enabled %></td>
-              <td class="w-25">
+              <td>
+                <input
+                  type="checkbox"
+                  <%= crawl_market.enabled ? "checked" : "" %>
+                  class="toggle toggle-md"
+                  data-reflex="click->CrawlMarketReflex#toggle"
+                  data-id="<%= crawl_market.id %>"
+                />
+              </td>
+              <td class="w-35">
                 <div>
+                  <%= link_to crawl_market_crawler_fields_path(crawl_market), class: "btn btn-success btn-sm btn-square", data: { turbo: false } do %>
+                    <%= icon "sitemap", class: "fill-primary-content" %>
+                  <% end %>
                   <%= link_to edit_crawl_market_path(crawl_market),
-                    class: "btn btn-secondary btn-sm btn-square",
+                    class: "btn btn-accent btn-sm btn-square",
                     data: {
                       turbo_method: :get,
                       turbo_frame: "edit_crawl_market_frame"
                     } do %>
-                    <%= icon "edit" %>
+                    <%= icon "edit", class: "fill-accent-content" %>
                   <% end %>
                   <%= link_to crawl_market_path(crawl_market),
                     class: "btn btn-error btn-sm btn-square",
@@ -35,7 +46,7 @@
                       turbo_confirm: "Are you sure you want to delete the crawl market?",
                       turbo_method: :delete
                     } do %>
-                    <%= icon "trash" %>
+                    <%= icon "trash", class: "fill-error-content" %>
                   <% end %>
                 </div>
               </td>

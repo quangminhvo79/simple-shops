@@ -1,0 +1,46 @@
+<div class="text-xl font-bold flex items-center justify-between space-x-2 flex-row cursor-default mb-5">
+  <div class="flex items-center space-x-2 flex-row">
+    <%= link_to crawl_markets_path, class: "btn btn-sm btn-square mr-4" do %>
+      <%= icon "arrow-back" %>
+    <% end %>
+    <%= icon "store", class: "w-8 h-8" %>
+    <span><%= @crawl_market.name %></span>
+  </div>
+  <div>
+    <%= link_to new_crawl_market_crawler_field_path, class: "btn", data: { turbo_stream: true } do %>
+      <%= icon "list-plus" %>
+      <span>New Field</span>
+    <% end %>
+  </div>
+</div>
+
+<div class="bg-base-100 border-base-300 collapse border text-base-content mb-3" data-theme="caramellatte">
+  <%= radio_button "crawl-market-base", nil, nil, class: "collapse-radio", checked: true %>
+  <div class="collapse-title flex flex-row items-center justify-between pr-4">
+    <p class="text-neutral">Crawler Base Fields</p>
+    <div class="collapse-hidden flex flex-row gap-2 z-100">
+      <button class="btn btn-sm btn-accent z-100" form="update-crawl-market-<%= @crawl_market.to_gid_param %>">
+        <%= icon "save", class: "w-5 h-5 fill-current" %>
+        <span class="text-sm">Save</span>
+      </button>
+    </div>
+  </div>
+  <div class="collapse-content">
+    <%= form_for @crawl_market, url: crawl_market_path(@crawl_market), method: :patch,
+      html: { id: "update-crawl-market-#{@crawl_market.to_gid_param}" } do |f| %>
+      <div class="flex flex-row items-center gap-4 mb-3 px-1">
+        <label class="floating-label w-full" data-theme="caramellatte">
+          <%= f.text_field :create_order_btn_container, class: "input input-md bg-primary-content w-full", placeholder: "Create Order button container *" %>
+          <span>Create Order button container</span>
+        </label>
+        <label class="floating-label w-full" data-theme="caramellatte">
+          <%= f.text_field :price_tag_container, class: "input input-md bg-primary-content w-full", placeholder: "Create Order button container *" %>
+          <span>Price Tag container</span>
+        </label>
+      </div>
+    <% end %>
+  </div>
+</div>
+
+<%= render "list", selected_id: nil %>
+<%= turbo_frame_tag :new_crawler_field_form %>

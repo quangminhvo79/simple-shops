@@ -3,7 +3,7 @@
     <label for="my-drawer" class="btn btn-square lg:hidden drawer-button">
       <%= icon "menu" %>
     </label>
-    <a class="btn btn-ghost text-xl">Your Shop</a>
+    <a href="/" class="btn btn-ghost text-xl">Your Shop</a>
   </div>
   <div class="flex-none space-x-4">
     <% if user_signed_in? %>
@@ -30,9 +30,7 @@
       <div class="dropdown dropdown-end">
         <div tabindex="0" role="button" class="btn btn-ghost btn-circle avatar">
           <div class="w-10 rounded-full">
-            <img
-              alt="Navbar component"
-              src="https://img.daisyui.com/images/stock/photo-1534528741775-53994a69daeb.webp" />
+            <img alt="Navbar component" src="/avatar.jpg" />
           </div>
         </div>
         <ul

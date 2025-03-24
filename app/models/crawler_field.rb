@@ -10,4 +10,11 @@ class CrawlerField < ApplicationRecord
 
   belongs_to :crawl_market
   validates :field_name, :selector, :query_type, :element_content_attr, presence: true
+  validates :field_name, uniqueness: { scoped: [:crawl_market_id] }
+
+  def selector_normalize
+    selector.map do |i|
+      i.is_a?(String) ? i : i.values
+    end.flatten.join(", ")
+  end
 end

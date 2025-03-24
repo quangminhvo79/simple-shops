@@ -1,0 +1,11 @@
+<%= turbo_stream.replace :toast do %>
+ <%= render "layouts/toast" %>
+<% end %>
+
+<% if @crawler_field.persisted? %>
+  <%= turbo_stream.replace :crawler_fields_list do %>
+    <%= render "crawler_fields/list", selected_id: @crawler_field.to_gid_param %>
+  <% end %>
+
+  <%= turbo_stream.update :new_crawler_field_form %>
+<% end %>

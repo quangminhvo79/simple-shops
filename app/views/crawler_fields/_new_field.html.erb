@@ -1,0 +1,18 @@
+<div class="divider divider-neutral">NEW</div>
+<div class="bg-base-100 border-base-300 collapse border">
+  <input type="radio" name="crawl-market-<%= @crawl_market.to_gid_param %>" checked/>
+  <div class="collapse-title flex flex-row items-center justify-between pr-4 peer-checked:mb-3">
+    <p>Crawler Field: <%= crawler_field.field_name %></p>
+    <button class="btn btn-sm z-100" form="crawler_field_form_for">
+      <%= icon "save", class: "w-5 h-5" %>
+      <span class="text-sm">Save</span>
+    </button>
+  </div>
+  <div class="collapse-content">
+    <%= render "form",
+      resource: crawler_field,
+      resource_path: crawl_market_crawler_fields_path,
+      resource_method: :post,
+      resource_submit_id: "crawler_field_form_for" %>
+  </div>
+</div>

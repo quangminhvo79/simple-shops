@@ -1,0 +1,86 @@
+.customLook {
+  --tag-bg                  : var(--color-accent-content);
+  --tag-hover               : var(--color-warning);
+  --tag-text-color          : var(--color-base-content);
+  --tags-border-color       : silver;
+  --tag-text-color--edit    : #111;
+  --tag-remove-bg           : var(--tag-hover);
+  --tag-pad                 : 0.5rem 1rem 0.5rem .75rem;
+  --tag-inset-shadow-size   : 2rem; /* compensate for the larger --tag-pad value */
+  --tag-remove-btn-color    : white;
+  --tag-remove-btn-bg--hover: black;
+  --tag--max-width          : 110%;
+
+  display: inline-block;
+  min-width: 0;
+  border: none;
+}
+
+.customLook .tagify__tag {
+  margin-top: 0;
+}
+
+.customLook .tagify__tag.tagify__tag--editable>div {
+  width: 105%;
+  flex-wrap: nowrap !important;
+
+  .tagify__tag-text {
+    width: 110% !important;
+    padding: 0!important;
+    min-width: 40px !important;
+  }
+}
+
+
+.customLook .tagify__tag>div {
+  border-radius: 25px;
+  line-height: 16px;
+  flex-direction: column;
+}
+
+.customLook .tagify__tag:not(:only-of-type):not(.tagify__tag--editable):hover .tagify__tag-text {
+  margin-inline-end: 5px;
+}
+
+/* Do not show the "remove tag" (x) button when only a single tag remains */
+.customLook .tagify__tag:only-of-type .tagify__tag__removeBtn {
+  display: none;
+}
+
+.customLook .tagify__tag__removeBtn {
+  opacity: 0;
+  transform: translateX(-100%) scale(.5);
+  margin-inline: -20px 6px;
+  /* very specific on purpose  */
+  text-align: right;
+  transition: .12s;
+}
+
+.customLook .tagify__tag:not(.tagify__tag--editable):hover .tagify__tag__removeBtn {
+  transform: none;
+  opacity: 1;
+}
+
+.customLook+button {
+  color: var(--color-warning);
+  font: bold 21px/33px Arial;
+  border: 0;
+  background: none;
+  box-shadow: 0 0 0 2px inset currentColor;
+  border-radius: 50%;
+  width: 2rem;
+  height: 2rem;
+  cursor: pointer;
+  outline: none;
+  transition: .1s ease-out;
+  margin: 0 0 0 5px;
+  vertical-align: top;
+}
+
+.customLook+button:hover {
+  box-shadow: 0 0 0 5px inset currentColor;
+}
+
+.customLook .tagify__input {
+  display: none;
+}

@@ -1,11 +1,11 @@
 @import "tailwindcss";
-
+@import "./tagify";
 @plugin "@tailwindcss/typography";
 @plugin "@tailwindcss/aspect-ratio";
 @plugin "@tailwindcss/container-queries";
 
 @plugin "daisyui" {
-  themes: light --default, dark --prefersdark, cupcake, coffee;
+  themes: light --default, dark --prefersdark, cmyk, caramellatte, coffee;
 }
 
 @plugin "daisyui/theme" {
@@ -21,5 +21,46 @@
 
   :where(:root:has(.modal-open,.modal[open],.modal:target,.modal-toggle:checked,.drawer:not(.drawer-open)>.drawer-toggle:checked)) {
     scrollbar-gutter: auto;
+  }
+}
+
+@layer utilities {
+  .collapse-open,
+  .collapse:is([open],:focus:not(.collapse-close)),
+  .collapse:not(.collapse-close):has(>input:is([type=checkbox],[type=radio]):checked) {
+    @apply border-neutral border-2;
+  }
+
+  .tagify {
+    @apply gap-0
+  }
+
+  .floating-label .tagify--focus {
+    --input-color: var(--color-base-content) !important;
+    box-shadow: 0 1px color-mix(in oklab, var(--input-color) calc(var(--depth)* 10%), #0000);
+    outline: 2px solid var(--input-color) !important;
+    outline-offset: 2px;
+    isolation: isolate;
+    border: 2px solid var(--color-base-content) !important;
+  }
+
+  .tagify__input {
+    top: 0 !important;
+  }
+
+  .collapse-radio:checked~.collapse-title {
+    @apply mb-3;
+  }
+
+  .collapse-hidden {
+    @apply hidden;
+  }
+
+  .collapse-radio:checked {
+    ~.collapse-title {
+      .collapse-hidden {
+        @apply block;
+      }
+    }
   }
 }

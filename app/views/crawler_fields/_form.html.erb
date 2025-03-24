@@ -1,0 +1,25 @@
+<%= form_for resource, url: resource_path, method: resource_method, html: { class: "space-y-5", id: resource_submit_id } do |f| %>
+  <div class="flex flex-row space-x-4">
+    <label class="floating-label w-2/6">
+      <%= f.text_field :field_name, class: "input input-md bg-primary-content", placeholder: "Field Name *" %>
+      <span>Field Name <span class="required font-weight-bold text-red-600">*</span></span>
+    </label>
+
+    <label class="select w-4/6 bg-primary-content">
+      <span class="label">Query Type <span class="required font-weight-bold text-red-600">*</span></span>
+      <%= f.select :query_type, CrawlerField.query_types.invert.to_a, {} %>
+    </label>
+
+    <label class="floating-label w-1/3">
+      <%= f.text_field :element_content_attr, class: "input input-md bg-primary-content", placeholder: "Element Content Attribute *" %>
+      <span>Element Content Attribute <span class="required font-weight-bold text-red-600">*</span></span>
+    </label>
+  </div>
+  <div data-controller="tagify">
+    <label class="w-full text-sm">
+      <span class="inline-block mb-3">Selectors <span class="required font-weight-bold text-red-600">*</span></span>
+    </label>
+    <%= f.text_field :selector, value: resource.selector_normalize, class: "customLook text-sm", placeholder: "Selectors *" %>
+    <button type="button" data-action="click->tagify#onAddNewTag">+</button>
+  </div>
+<% end %>

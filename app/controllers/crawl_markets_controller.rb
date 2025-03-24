@@ -1,4 +1,5 @@
 class CrawlMarketsController < ApplicationController
+  before_action :authenticate_user!
   def index
     @crawl_markets = CrawlMarket.all
   end

@@ -11,7 +11,12 @@ class CrawlMarket < ApplicationRecord
   before_save :remove_blank_paths
 
   def self.display_fields
-    CrawlMarket.column_names - [ "created_at", "updated_at" ]
+    CrawlMarket.column_names - [
+      "created_at",
+      "updated_at",
+      "price_tag_container",
+      "create_order_btn_container"
+    ]
   end
 
   def crawler_paths_normalize

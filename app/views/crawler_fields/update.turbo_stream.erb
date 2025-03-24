@@ -1,0 +1,10 @@
+<%= turbo_stream.replace :toast do %>
+ <%= render "layouts/toast" %>
+<% end %>
+
+<%= turbo_stream.replace "crawler_field_#{@crawler_field.to_gid_param}" do %>
+  <%= render partial: "item", locals: {
+    crawler_field: @crawler_field,
+    selected_id: @crawler_field.to_gid_param
+  } %>
+<% end %>

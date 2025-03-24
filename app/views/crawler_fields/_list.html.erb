@@ -1,0 +1,9 @@
+<%= turbo_frame_tag :crawler_fields_list do %>
+  <div class="space-y-3">
+    <%= render partial: "item",
+      collection: @crawl_market.crawler_fields.order(id: :asc),
+      as: :crawler_field,
+      locals: { selected_id: selected_id }
+    %>
+  </div>
+<% end %>

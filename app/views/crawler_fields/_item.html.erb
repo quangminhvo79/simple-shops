@@ -1,0 +1,35 @@
+<%= turbo_frame_tag "crawler_field_#{crawler_field.to_gid_param}", class: "block" do %>
+  <div class="bg-base-100 border-base-300 collapse border text-base-content" data-theme="caramellatte">
+    <%= radio_button "crawl-market-#{@crawl_market.to_gid_param}", nil, nil,
+      class: "collapse-radio", checked: selected_id == crawler_field.to_gid_param
+    %>
+    <div class="collapse-title flex flex-row items-center justify-between pr-4">
+      <p class="text-neutral">Crawler Field: <%= crawler_field.field_name %></p>
+      <div class="collapse-hidden flex flex-row gap-2 z-100">
+        <button class="btn btn-sm btn-accent z-100" form="crawler_field_form_for_<%= crawler_field.to_gid_param %>">
+          <%= icon "save", class: "w-5 h-5 fill-current" %>
+          <span class="text-sm">Save</span>
+        </button>
+        <%= link_to crawl_market_crawler_field_path(@crawl_market, crawler_field),
+          class: "btn btn-sm z-100",
+          data: {
+            reflex: "click->CrawlerField#destroy",
+            crawler_field: crawler_field.id,
+            crawl_market: @crawl_market.id
+          } do
+        %>
+          <%= icon "trash", class: "w-5 h-5" %>
+          <span class="text-sm">Delete</span>
+        <% end %>
+      </div>
+    </div>
+    <div class="collapse-content">
+      <%= render "form",
+        resource: crawler_field,
+        resource_path: crawl_market_crawler_field_path(@crawl_market, crawler_field),
+        resource_method: :patch,
+        resource_submit_id: "crawler_field_form_for_#{crawler_field.to_gid_param}"
+      %>
+    </div>
+  </div>
+<% end %>
