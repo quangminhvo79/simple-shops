@@ -8,7 +8,11 @@
         <h4 class="text-lg font-bold">New Crawl Market</h4>
       </div>
       <div class="form-container">
-        <%= render "form", crawl_market: CrawlMarket.new, form_url: crawl_markets_path %>
+        <%= render "form",
+          crawl_market: CrawlMarket.new,
+          form_url: crawl_markets_path,
+          form_method: :post
+        %>
       </div>
     </div>
   </dialog>

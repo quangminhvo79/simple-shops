@@ -26,12 +26,12 @@ class CrawlMarketsController < ApplicationController
 
   def update
     @crawl_market = CrawlMarket.find(params[:id])
-    crawler_paths = JSON.parse(crawl_market_paths) rescue crawl_market_paths
+    crawler_paths = JSON.parse(crawl_market_paths) rescue @crawl_market.crawler_paths.presence || crawl_market_paths
 
     if @crawl_market.update(crawl_market_params.merge(crawler_paths:))
       flash.now[:notice] = "Market updated successfully"
     else
-      flash.now[:alert] = "Market update failed"
+      flash.now[:alert] = "#{@crawl_market.errors.full_messages.join(', ')}"
     end
   end
 
@@ -41,14 +41,19 @@ class CrawlMarketsController < ApplicationController
     if @crawl_market.destroy
       flash.now[:notice] = "Market deleted successfully"
     else
-      flash.now[:alert] = "Market deleted failed"
+      flash.now[:alert] = "#{@crawl_market.errors.full_messages.join(', ')}"
     end
   end
 
   private
 
   def crawl_market_params
-    params.require(:crawl_market).permit(:name, :code, :enabled, crawler_paths: [])
+    params.require(:crawl_market).permit(
+      :name, :code, :enabled,
+      :create_order_btn_container,
+      :price_tag_container,
+      crawler_paths: []
+    )
   end
 
   def crawl_market_paths

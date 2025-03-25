@@ -7,7 +7,11 @@
       <div class="dialog-header mb-5">
         <h4 class="text-lg font-bold">Edit Crawl Market</h4>
       </div>
-      <%= render "form", crawl_market: crawl_market, form_url: edit_crawl_market_path(crawl_market) %>
+      <%= render "form",
+        crawl_market: crawl_market,
+        form_url: crawl_market_path(crawl_market),
+        form_method: :patch
+      %>
     </div>
   </dialog>
 <% end %>
