@@ -10,8 +10,8 @@ module ApplicationHelper
       {
         title: "Exchange Rates",
         icon_name: "dollar-circle",
-        active_class: nil,
-        url: root_path
+        active_class: ["exchange_rates"].include?(controller_name) ? "menu-active" : nil,
+        url: exchange_rates_path
       },
       {
         title: "Crawl Markets",

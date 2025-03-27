@@ -25,4 +25,6 @@ Rails.application.routes.draw do
   resources :crawl_markets do
     resources :crawler_fields
   end
+
+  resources :exchange_rates
 end
